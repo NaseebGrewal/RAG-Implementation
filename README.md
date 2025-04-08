@@ -1,7 +1,6 @@
 # Retrieval-Augmented Generation (RAG) System
 
-This project implements a simple Retrieval-Augmented Generation (RAG) system designed to
-identify potentially suspicious organizations using a fictional dataset of organization descriptions.
+This project implements a simple Retrieval-Augmented Generation (RAG) system with different prompt techniques.
 
 ---
 
