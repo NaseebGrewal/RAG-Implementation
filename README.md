@@ -43,7 +43,7 @@ Hawk-Submission/
 
 1. **Clone this Repository:**
     ```bash
-    git clone https://github.com/your_username/Hawk-Submission.git
+    git clone https://github.com/NaseebGrewal/RAG-Implementation.git
     cd Hawk-Submission
     ```
 
