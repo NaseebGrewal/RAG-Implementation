@@ -33,6 +33,7 @@ Hawk-Submission/
 - [FAISS](https://github.com/facebookresearch/faiss)
 - [SentenceTransformers](https://www.sbert.net/)
 - [Hugging Face Mistral API](https://huggingface.co/inference-api)
+- [OpenAI API](https://platform.openai.com/docs/overview)
 - dotenv for environment management
 - NumPy for vector operations
 
@@ -56,6 +57,7 @@ Hawk-Submission/
     ```
     HUGGINGFACE_API_TOKEN=your_token_here
     FILE_PATH=path_to_your_data.txt
+    OPENAI_API_KEY=your_openai_api_key
     ```
 
 4. **Run the Notebook:**
