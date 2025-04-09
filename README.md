@@ -19,17 +19,20 @@ The system performs the following steps:
 
 ```
 Hawk-Submission/
-├── README.md
+├── Data/
+|     └──dataset.txt    
+├── README.md    
+├── Problem_statement.md
 ├── submission_rag_assignment.ipynb      # Main notebook containing the implementation
 ├── requirements.txt                     # Python dependencies list
-└── .env                                 # Environment variables configuration
+└── .env                                 # Environment variables configuration NOTE: faiss-cpu library only works for Mac and Linux system
 ```
 
 ---
 
 ## Technologies Used
 
-- Python 3.10+
+- Python 3.13
 - [FAISS](https://github.com/facebookresearch/faiss)
 - [SentenceTransformers](https://www.sbert.net/)
 - [Hugging Face Mistral API](https://huggingface.co/inference-api)
@@ -44,7 +47,7 @@ Hawk-Submission/
 1. **Clone this Repository:**
     ```bash
     git clone https://github.com/NaseebGrewal/RAG-Implementation.git
-    cd Hawk-Submission
+    cd RAG-Implementation
     ```
 
 2. **Install Dependencies:**
