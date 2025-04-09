@@ -15,12 +15,15 @@ The system performs the following steps:
 
 ---
 
-## File Structure
+## Project Structure
 
 ```
 Hawk-Submission/
-├── Data/
-|     └──dataset.txt    
+├───── Data/
+|         └──dataset.txt    
+| 
+├───── ProblemStatement/
+|                 └──img.png
 ├── README.md    
 ├── Problem_statement.md
 ├── submission_rag_assignment.ipynb      # Main notebook containing the implementation
