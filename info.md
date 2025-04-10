@@ -70,3 +70,43 @@ the value `32` is a critical parameter for the HNSW (Hierarchical Navigable Smal
   The structure enabled by `M=32` helps ensure that, even in large-scale production environments, the index provides high-quality approximate nearest neighbor searches. This is crucial for applications like document retrieval where returning the best matches rapidly is key to performance.
 
 In summary, using `32` as the neighbor parameter in the HNSW index offers a reliable balance between retrieval accuracy, query speed, and resource consumption, making it an effective choice for production-level document embedding and retrieval systems.
+
+
+## Detailed Explanation of IndexFlatL2, L2 Distance, and the Sentence Transformer Model
+
+### IndexFlatL2 in FAISS
+
+- **What It Is:**  
+  `IndexFlatL2` is a FAISS index that performs *brute-force* nearest neighbor searches using the L2 distance metric. Unlike approximate indices, it does not implement any additional compression or clustering; instead, it iterates over all indexed vectors to compute distances.
+
+- **Key Features:**  
+  - **Exact Retrieval:** IndexFlatL2 computes the exact Euclidean (L2) distance between the query vector and each vector in the dataset, ensuring maximum accuracy.  
+  - **Simplicity:** Its straightforward design makes it easy to set up and use, making it a good choice for small-to-medium datasets or as a baseline for comparing other indexing methods.
+  - **Limitations on Scalability:** Because it does a linear scan of all vectors during searches, its performance may degrade with very large datasets where approximate methods might be preferred.
+
+### Understanding L2 Distance
+
+- **Definition:**  
+  L2 distance, also known as Euclidean distance, is a metric that measures the straight-line distance between two points in a multidimensional space. For two vectors x and y, it is defined as:  
+  
+  ‖x − y‖₂ = √(∑ᵢ (xᵢ − yᵢ)²)
+
+- **Why It Matters:**  
+  In the context of embedding search, L2 distance quantifies how similar two vector representations are. A smaller L2 distance implies higher similarity between the query embedding and a document embedding.
+
+- **Practical Application:**  
+  In the FAISS IndexFlatL2, the search function returns both distances and the indices of the closest vectors. This allows the system to determine which document chunks are most relevant to the input query based on how low the Euclidean distance is.
+
+### The BAAI/bge-small-en-v1.5 Sentence Transformer Model
+
+- **Model Overview:**  
+  `BAAI/bge-small-en-v1.5` is a pre-trained sentence transformer model used for generating dense vector representations of text. It is designed to capture semantic meaning so that similar sentences have similar embeddings.
+
+- **Advantages for Embedding Generation:**  
+  - **High-Quality Representations:** The model is fine-tuned on large-scale datasets and is effective at encoding the semantic content of text, making it well-suited for tasks like information retrieval, clustering, and matching.
+  - **Compact Size:** Being a "small" variant, it strikes a balance between performance and computational efficiency, enabling faster encoding without a significant drop in quality.
+  - **Use in Retrieval Systems:** When used in conjunction with FAISS, the embeddings produced by this model enable accurate similarity searches, ensuring that queries are matched with the most semantically relevant documents or text chunks.
+
+---
+
+Together, using `IndexFlatL2` for exact L2 distance computation and a high-quality sentence transformer like `BAAI/bge-small-en-v1.5` enables a robust retrieval system where the semantic similarity between user queries and document embeddings is precisely quantified.
