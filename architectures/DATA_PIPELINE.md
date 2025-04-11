@@ -20,7 +20,11 @@ This document outlines the data pipeline architecture for processing organizatio
 
 ---
 
-## Data Flow Diagram
+# Data Pipeline Architecture
+
+This section outlines the sequential data flow in our pipeline for processing organization data. The pipeline efficiently handles raw inputs by extracting data, processing documents, creating embeddings with a SentenceTransformer, and saving these embeddings in a FAISS index for fast retrieval.
+
+Below is the data flow diagram representing this pipeline:
 
 ```mermaid
 flowchart TD
@@ -34,4 +38,13 @@ flowchart TD
     G --> H[Save Embeddings to FAISS Index]
 ```
 
-This architecture is designed to be scalable and efficient, ensuring reliable processing of large datasets with robust document ingestion, embedding, and indexing capabilities.
+This diagram visually demonstrates the following steps:
+- **Raw Data File Path:** The pipeline begins by reading the raw data from a specified file.
+- **Regular Expression Extraction:** A regular expression extracts valuable information (e.g., document IDs, titles, descriptions).
+- **Document Conversion and Chunking:**  
+  - If a document is large, it is split into smaller, manageable chunks.
+  - Otherwise, it is processed as a whole.
+- **Embedding Generation:** Documents or chunks are then encoded into vector embeddings.
+- **Indexing:** Finally, the embeddings are saved into a FAISS index to support efficient similarity search during retrieval.
+
+This scalable and efficient architecture is designed for robust document ingestion, embedding, and retrieval in production-level deployments.
