@@ -110,3 +110,45 @@ In summary, using `32` as the neighbor parameter in the HNSW index offers a reli
 ---
 
 Together, using `IndexFlatL2` for exact L2 distance computation and a high-quality sentence transformer like `BAAI/bge-small-en-v1.5` enables a robust retrieval system where the semantic similarity between user queries and document embeddings is precisely quantified.
+
+
+
+## Comparing IndexFlatL2 and IndexHNSWFlat
+
+Both `IndexFlatL2` and `IndexHNSWFlat` are FAISS indices used for nearest neighbor search, but they are designed with different trade-offs in mind:
+
+### IndexFlatL2
+
+- **Brute-Force Search:**  
+  This index computes the exact Euclidean (L2) distance for every stored vector.  
+  - **Advantages:**
+    - **Accuracy:** Returns the exact nearest neighbors.
+    - **Simplicity:** Easy to use and implement.
+  - **Limitations:**
+    - **Scalability:** Performs a linear scan making it inefficient on large datasets.
+    - **Compute Intensive:** The computation cost increases with the dataset size, which can lead to slower query times.
+
+### IndexHNSWFlat
+
+- **Hierarchical Navigable Small World Graph (HNSW):**  
+  This index uses an approximate nearest neighbor strategy by organizing data into a graph where each node is connected to a set of neighbors.  
+  - **Advantages:**
+    - **Scalability:** Can handle large datasets efficiently by navigating a well-connected graph rather than performing a full scan.
+    - **Speed:** Typically provides faster query responses even with significant amounts of data.
+    - **Flexibility:** Parameters like the number of neighbors (`M`) and construction efficiency (`efConstruction`) can be tuned for a balance between accuracy and speed.
+  - **Limitations:**
+    - **Approximation:** As an approximate method, it might not always return the exact nearest neighbors, although it is generally very close.
+    - **Complexity:** The setup is more complex due to graph construction and the need for parameter tuning.
+
+### Use Cases and Considerations
+
+- **IndexFlatL2:**  
+  Best suited for small-to-medium datasets or scenarios where absolute precision is required and the data volume is manageable.
+
+- **IndexHNSWFlat:**  
+  Ideal for production-scale systems where:
+  - Fast query times are necessary,
+  - The dataset is large,
+  - A slight compromise on exact accuracy is acceptable in exchange for significantly improved performance.
+
+Both indices serve critical roles in document embedding and retrieval pipelines. Choosing the right one depends on your particular needs in terms of dataset size, required accuracy, and query latency.
