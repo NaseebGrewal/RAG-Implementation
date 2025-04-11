@@ -152,3 +152,28 @@ Both `IndexFlatL2` and `IndexHNSWFlat` are FAISS indices used for nearest neighb
   - A slight compromise on exact accuracy is acceptable in exchange for significantly improved performance.
 
 Both indices serve critical roles in document embedding and retrieval pipelines. Choosing the right one depends on your particular needs in terms of dataset size, required accuracy, and query latency.
+
+
+## Installing FAISS on Windows
+
+FAISS is primarily optimized for Linux and macOS, and while the official pip package (`faiss-cpu`) works on those platforms, Windows users must consider alternative approaches. Here are several methods to install FAISS on Windows:
+
+1. **Using Conda (Recommended):**  
+   FAISS is available via the conda-forge channel for Windows. To install FAISS with Conda, run:
+   ```bash
+   conda install -c conda-forge faiss-cpu
+   ```
+   This method installs precompiled binaries and manages dependencies effectively.
+
+2. **Using Windows Subsystem for Linux (WSL):**  
+   By installing WSL, you can run a Linux distribution on Windows. Once WSL is set up, you can install FAISS as you would on Linux:
+   ```bash
+   pip install faiss-cpu
+   ```
+   This leverages the Linux environment’s compatibility with FAISS.
+
+3. **Building from Source:**  
+   For advanced users, FAISS can be compiled from source on Windows using Visual Studio. Detailed build instructions and required dependencies are available on the [FAISS GitHub repository](https://github.com/facebookresearch/faiss).  
+   *Note:* This approach is more complex and recommended only if you need custom modifications or if other methods are not feasible.
+
+These methods enable Windows developers to integrate FAISS into their projects while overcoming the platform limitations.
