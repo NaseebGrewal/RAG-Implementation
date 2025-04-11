@@ -25,20 +25,42 @@ This document outlines the data pipeline architecture for processing organizatio
 This section outlines the sequential data flow in our pipeline for processing organization data. The pipeline efficiently handles raw inputs by extracting data, processing documents, creating embeddings with a SentenceTransformer, and saving these embeddings in a FAISS index for fast retrieval.
 
 Below is the data flow diagram representing this pipeline:
+### 4. **ASCII Art**
+   For simple diagrams, you can use plain text or ASCII art directly in your Markdown file:
 
-```mermaid
-flowchart TD
-    A[Raw Data File Path] --> B[Regular Expression Extraction]
-    B --> C[Convert Text to Documents]
-    C --> D{Large Document?}
-    D -- Yes --> E[Split into Chunks]
-    D -- No --> F[Retain as Documents]
-    E --> G[Embedding Function]
-    F --> G[Embedding Function]
-    G --> H[Save Embeddings to FAISS Index]
-```
+   ```plaintext
+   [Raw Data File Path] --> [Regex Extraction] --> [Convert to Documents]
+                                |
+                                v
+                     [Large Document?]
+                      /       \
+                    Yes       No
+                     |         |
+          [Split into Chunks] [Retain as Documents]
+                                |
+                                v
+                      [Embedding Function]
+                                |
+                                v
+                 [Save Embeddings to FAISS Index]
+   ```
+---
 
-This diagram visually demonstrates the following steps:
+### 5. **Markdown Tables**
+
+   ```markdown
+   | Step                     | Description                          |
+   |--------------------------|--------------------------------------|
+   | Raw Data File Path       | Read raw data from a file.          |
+   | Regex Extraction         | Extract information using regex.    |
+   | Convert to Documents     | Convert extracted text to documents.|
+   | Large Document?          | Check if the document is large.     |
+   | Split into Chunks        | Split large documents into chunks.  |
+   | Embedding Function       | Generate embeddings for documents.  |
+   | Save to FAISS Index      | Save embeddings to FAISS index.     |
+   ```
+
+This diagram  demonstrates the following steps:
 - **Raw Data File Path:** The pipeline begins by reading the raw data from a specified file.
 - **Regular Expression Extraction:** A regular expression extracts valuable information (e.g., document IDs, titles, descriptions).
 - **Document Conversion and Chunking:**  
