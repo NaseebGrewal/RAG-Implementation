@@ -60,7 +60,7 @@ Below is the data flow diagram representing this pipeline:
    | Save to FAISS Index      | Save embeddings to FAISS index.     |
    ```
 
-This diagram  demonstrates the following steps:
+This above information demonstrates the following steps:
 - **Raw Data File Path:** The pipeline begins by reading the raw data from a specified file.
 - **Regular Expression Extraction:** A regular expression extracts valuable information (e.g., document IDs, titles, descriptions).
 - **Document Conversion and Chunking:**  
